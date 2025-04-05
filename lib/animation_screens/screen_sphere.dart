@@ -62,7 +62,7 @@ class SpherePainter extends CustomPainter {
         final angle = (point / points) * 2 * pi * rotation;
 
         final wobble = sin(time * 2 + ringRadius / 10) * 10;
-        final distanceModifier = 1 + sin(angle * 3 + time);
+        final distanceModifier = 1 + sin(angle * 3 + time) * 0.1;
         final adjustedRadius = (ringRadius + wobble) * distanceModifier;
 
         final x = cos(angle) * adjustedRadius;
