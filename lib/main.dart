@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/animation_screens/screen_sphere.dart';
+import 'package:flutter_animations/animation_screens/screen_flipping_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Animations',
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple, brightness: Brightness.dark)),
-      home: ScreenSphere(),
+      home: ScreenFlippingCard(),
     );
   }
 }
