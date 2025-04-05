@@ -12,6 +12,7 @@ class ScreenFlippingCard extends StatefulWidget {
 class _ScreenFlippingCardState extends State<ScreenFlippingCard> with SingleTickerProviderStateMixin {
   late AnimationController acFlippingCard;
   late Animation<double> cardAnimation;
+  bool isFront = true;
 
   @override
   void initState() {
@@ -19,7 +20,8 @@ class _ScreenFlippingCardState extends State<ScreenFlippingCard> with SingleTick
     acFlippingCard = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     cardAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(acFlippingCard);
 
-    acFlippingCard.addStatusListener((status) {
+    // Disabled auto animation
+    /*acFlippingCard.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         acFlippingCard.reverse();
       } else if (status == AnimationStatus.dismissed) {
@@ -27,7 +29,7 @@ class _ScreenFlippingCardState extends State<ScreenFlippingCard> with SingleTick
       }
     });
 
-    acFlippingCard.forward();
+    acFlippingCard.forward();*/
   }
 
   @override
@@ -41,27 +43,30 @@ class _ScreenFlippingCardState extends State<ScreenFlippingCard> with SingleTick
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: AnimatedBuilder(
-            animation: cardAnimation,
-            builder: (context, child) {
-              return Transform(
-                alignment: Alignment.center,
-                transform:
-                    Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
-                      ..rotateY(cardAnimation.value * math.pi),
-                child: child,
-              );
-            },
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                gradient: LinearGradient(
-                  colors: [Colors.blueGrey, Colors.grey],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+          child: GestureDetector(
+            onTap: flipCard,
+            child: AnimatedBuilder(
+              animation: cardAnimation,
+              builder: (context, child) {
+                return Transform(
+                  alignment: Alignment.center,
+                  transform:
+                      Matrix4.identity()
+                        ..setEntry(3, 2, 0.001)
+                        ..rotateY(cardAnimation.value * math.pi),
+                  child: child,
+                );
+              },
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  gradient: LinearGradient(
+                    colors: [Colors.blueGrey, Colors.grey],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                 ),
               ),
             ),
@@ -69,5 +74,14 @@ class _ScreenFlippingCardState extends State<ScreenFlippingCard> with SingleTick
         ),
       ),
     );
+  }
+
+  void flipCard() {
+    if (isFront) {
+      acFlippingCard.forward();
+    } else {
+      acFlippingCard.reverse();
+    }
+    isFront = !isFront;
   }
 }
