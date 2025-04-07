@@ -61,7 +61,7 @@ class GlowPointer extends CustomPainter {
     for (var point in points) {
       double age = time - point.creationTime;
       double opacity = (1 - age / 3).clamp(0, 1);
-      double radius = (40 - age * 10).clamp(1, 40);
+      double radius = (40 - age * 10).clamp(1, 10);
 
       paint.color = HSVColor.fromAHSV(1, (age * 360) % 360, 1, 1).toColor().withValues(alpha: opacity);
       canvas.drawCircle(point.position, radius, paint);
