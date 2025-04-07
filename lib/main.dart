@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/animation_screens/screen_glow_effect.dart';
+import 'package:flutter_animations/animation_screens/screen_paper_flip.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Animations',
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple, brightness: Brightness.dark)),
-      home: ScreenGlowEffect(),
+      home: ScreenPaperFlip(),
     );
   }
 }
