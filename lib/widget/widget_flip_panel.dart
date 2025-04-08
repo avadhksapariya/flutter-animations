@@ -42,7 +42,7 @@ class WidgetFlipPanel<T> extends StatefulWidget {
   /// The animation is looped in [loop] times before finished.
   /// Setting [loop] to -1 makes flip animation run forever.
   /// The [period] should be two times greater than [duration] of flip animation,
-  /// if not the animation becomes jesuper.key, rky/stuttery.
+  /// if not the animation becomes jerky/stuttery.
   WidgetFlipPanel.builder({
     super.key,
     @required IndexedItemBuilder? itemBuilder,
@@ -249,6 +249,7 @@ class _WidgetFlipPanelState<T> extends State<WidgetFlipPanel> with TickerProvide
           : Stack(
             children: [
               Transform(
+                alignment: Alignment.bottomCenter,
                 transform:
                     Matrix4.identity()
                       ..setEntry(3, 2, perspective)
@@ -256,6 +257,7 @@ class _WidgetFlipPanelState<T> extends State<WidgetFlipPanel> with TickerProvide
                 child: upperChild2,
               ),
               Transform(
+                alignment: Alignment.bottomCenter,
                 transform:
                     Matrix4.identity()
                       ..setEntry(3, 2, perspective)
@@ -270,7 +272,7 @@ class _WidgetFlipPanelState<T> extends State<WidgetFlipPanel> with TickerProvide
           ? Stack(
             children: [
               Transform(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.topCenter,
                 transform:
                     Matrix4.identity()
                       ..setEntry(3, 2, perspective)
@@ -278,7 +280,7 @@ class _WidgetFlipPanelState<T> extends State<WidgetFlipPanel> with TickerProvide
                 child: lowerChild2,
               ),
               Transform(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.topCenter,
                 transform:
                     Matrix4.identity()
                       ..setEntry(3, 2, perspective)
